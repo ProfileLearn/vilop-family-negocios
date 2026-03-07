@@ -209,7 +209,7 @@
       <section class="mb-8 border-y border-zinc-100 py-8">
         <div class="max-w-4xl mx-auto text-center mb-12">
           <h2 class="text-3xl font-bold mb-4 italic text-zinc-900">
-            Catálogo de focaccias artesanales
+            Catálogo de focaccias de autor artesanales
           </h2>
           <p class="text-zinc-500 text-sm max-w-2xl mx-auto">
             Selección de líneas clásicas y especiales para construir una oferta consistente y diferencial.
@@ -222,10 +222,37 @@
             <p class="text-sm text-zinc-500 mb-6">
               Presentación entera o media pieza. La lista mayorista se cotiza según combinación de sabores y volumen.
             </p>
-            <div
-              id="focaccia-solo-grid"
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
-            ></div>
+            <div class="space-y-10 text-left">
+              <div>
+                <div class="mb-5 border-b border-zinc-100 pb-3">
+                  <h4 class="text-lg font-black uppercase tracking-[0.18em] text-zinc-900">
+                    Línea clásica
+                  </h4>
+                  <p class="text-xs uppercase tracking-[0.16em] text-zinc-400 mt-2">
+                    Sabores de rotación constante para barra, panera y cocina.
+                  </p>
+                </div>
+                <div
+                  id="focaccia-solo-grid-classica"
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                ></div>
+              </div>
+
+              <div>
+                <div class="mb-5 border-b border-zinc-100 pb-3">
+                  <h4 class="text-lg font-black uppercase tracking-[0.18em] text-zinc-900">
+                    Línea especial
+                  </h4>
+                  <p class="text-xs uppercase tracking-[0.16em] text-zinc-400 mt-2">
+                    Variedades con perfil más distintivo para una propuesta de autor.
+                  </p>
+                </div>
+                <div
+                  id="focaccia-solo-grid-especial"
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                ></div>
+              </div>
+            </div>
           </div>
 
           <p class="text-zinc-500 text-md font-black">FORMATOS SUGERIDOS PARA EL SERVICIO:</p>
@@ -286,24 +313,8 @@
       </section>
 
       <section class="mt-20">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
-          <div class="focaccia-card p-8">
-            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400">
-              Trabajo comercial
-            </p>
-            <h2 class="text-3xl font-bold italic text-zinc-900 mt-3">
-              Propuesta lista para presentar a un local
-            </h2>
-            <p class="text-sm text-zinc-500 mt-4 leading-relaxed">
-              El catálogo está armado para una conversación comercial: muestra variedades, posiciona el producto
-              como solución gastronómica y deja abierta la cotización según escala y formato.
-            </p>
-            <p class="text-sm text-zinc-500 mt-4 leading-relaxed">
-              Si necesitás una versión con precios mayoristas, mínimos de compra o presentación para imprimir,
-              se puede sumar sobre esta base sin volver a rehacer la estructura.
-            </p>
-          </div>
-          <div class="bg-zinc-900 text-white p-8">
+        <div class="max-w-5xl mx-auto flex justify-center">
+          <div class="bg-zinc-900 text-white p-8 w-full max-w-2xl text-center rounded-lg">
             <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400">
               Contacto
             </p>
@@ -315,7 +326,7 @@
             </p>
             <p class="text-sm mt-6">
               WhatsApp:
-              <strong class="text-white">+54 9 11 3179 9740</strong>
+              <strong class="block text-white mt-2">+54 9 11 3179 9740</strong>
             </p>
             <p class="text-sm text-zinc-300 mt-4 leading-relaxed">
               Consultar propuesta comercial, muestras y esquema de abastecimiento.
@@ -414,11 +425,19 @@
           service: "Ediciones de temporada y carta de noche",
           desc: "La pasión de la cebolla caramelizada fundida con trozos de parmesano sobre una masa roja intensa.",
           img: "images/focaccias/focaccia-rubi.jpeg"
+        },
+        {
+          name: "Focaccia Umami",
+          line: "Línea especial",
+          service: "Platos especiales y propuestas de autor",
+          desc: "Portobellos al Ghee, Ajos Confitados y Cebollas Caramelizadas: Nuestra pieza maestra del umami. La intensidad del portobello se fusiona con la untuosidad del ajo confitado en Ghee y la profundidad dulce de la cebolla.",
+          img: "images/focaccias/focaccia-umami.jpeg"
         }
       ];
 
       function createFocacciasSolo() {
-        const grid = document.getElementById("focaccia-solo-grid");
+        const classicGrid = document.getElementById("focaccia-solo-grid-classica");
+        const specialGrid = document.getElementById("focaccia-solo-grid-especial");
 
         focacciaSolo.forEach((item) => {
           const card = document.createElement("div");
@@ -448,7 +467,8 @@
           </div>
         `;
 
-          grid.appendChild(card);
+          const targetGrid = item.line === "Línea especial" ? specialGrid : classicGrid;
+          targetGrid.appendChild(card);
         });
       }
 
